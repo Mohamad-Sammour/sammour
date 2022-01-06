@@ -1,8 +1,10 @@
-import 'dart:html';
 
 import 'package:flutter/material.dart';
-import 'package:untitled/Screens/Widget/customBtn.dart';
+import 'Widget/custom_btn.dart';
+
 import 'package:untitled/Screens/constants.dart';
+import 'package:untitled/Widget/custom_btn.dart';
+import 'package:untitled/Widget/custom_input.dart';
 
 class LogInPage extends StatefulWidget {
   const LogInPage({Key? key}) : super(key: key);
@@ -35,12 +37,36 @@ class _LogInPageState extends State<LogInPage> {
 
                 ),
               ),
-              Text("input Fields"),
-              CustomBtn(
-                text: "Create New Account",
-                onPressed: (){
-                  print("Click On Create Account Button");
-                },
+              Column(
+                children: [
+                  CustomInput(
+                    hintText: "Email..",
+                  ),
+                  CustomInput(
+                    hintText: "Password..",
+                  ),
+                  CustomBtn(
+                    text: "Login",
+                    onPressed:() {
+
+                      print("Clicked the Login Button");
+
+                    },
+                  ),
+
+                ],
+              ),
+
+              Padding(
+                padding: const EdgeInsets.only(
+                  bottom: 17,
+                ),
+                child: CustomBtn(
+                  text: "Create New Account",
+                  onPressed: (){
+                    print("Click On Create Account Button");
+                  },
+                ),
               ),
             ],
           ),

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "587604989787",
+    "project_id": "e-commerce-on-balah",
+    "storage_bucket": "e-commerce-on-balah.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:587604989787:android:a50e597f2944d2f337ac7e",
+        "android_client_info": {
+          "package_name": "com.example.untitled"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "587604989787-vr0bmmn5ksjd0kbq60qajuqldu076lit.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMIBo4KEF77yidtHURUTH2O1-4lZYlu3k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "587604989787-vr0bmmn5ksjd0kbq60qajuqldu076lit.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

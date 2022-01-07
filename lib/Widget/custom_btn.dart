@@ -17,6 +17,7 @@ class CustomBtn extends StatelessWidget {
       onTap: onPressed!(),
       child: Container(
         height: 65.0,
+        alignment: Alignment.center,
         decoration: BoxDecoration(
           color: _outlineBtn ? Colors.transparent : Colors.black,
           border: Border.all(

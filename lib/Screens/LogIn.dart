@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:untitled/Screens/Register.dart';
 import 'package:untitled/Screens/constants.dart';
 import 'package:untitled/Widget/custom_btn.dart';
 import 'package:untitled/Widget/custom_input.dart';
@@ -22,7 +23,6 @@ class _LogInPageState extends State<LogInPage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
             children: [
-
               //For Heading
               Container(
                 padding: EdgeInsets.only(
@@ -62,9 +62,14 @@ class _LogInPageState extends State<LogInPage> {
                 child: CustomBtn(
                   text: "Create New Account",
                   onPressed: (){
-                    print("Click On Create Account Button");
+                    Navigator.push(
+                      context,
+                        MaterialPageRoute(builder: (contex) =>Register()
+                        ),
+                    );
 
                   },
+                  outlineBtn: true,
                 ),
               ),
             ],

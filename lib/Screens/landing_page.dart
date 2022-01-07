@@ -12,7 +12,9 @@ class LandingPage extends StatelessWidget {
   final Future<FirebaseApp> _intialization = Firebase.initializeApp();
 
   @override
+
   Widget build(BuildContext context) {
+
     return FutureBuilder(
       future: _intialization,
       builder: (context, snapshot){

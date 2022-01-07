@@ -47,6 +47,7 @@ class _RegisterState extends State<Register> {
   }
 
   //Create a new user account
+
   Future<String?> _CreateAccount() async{
     try{
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
@@ -70,7 +71,7 @@ class _RegisterState extends State<Register> {
   void _submitForm() async{
 //set the form loading state
     setState(() {
-      _RegisterFormLoading=true;
+      _registerFormLoading=true;
     });
 
 //run the create account method
@@ -82,7 +83,7 @@ class _RegisterState extends State<Register> {
 
      //set the form to regular state [not loading]
      setState(() {
-       _RegisterFormLoading=false;
+       _registerFormLoading=false;
      });
    }else{
      Navigator.pop(context);
@@ -90,9 +91,9 @@ class _RegisterState extends State<Register> {
   }
 
 // Default from loading state
-  bool _RegisterFormLoading = false;
+  bool _registerFormLoading = false;
 
-// form input fields values
+ //form input fields values
   String FullName="";
   String email="";
   var password= " ";
@@ -113,6 +114,7 @@ class _RegisterState extends State<Register> {
     _passwordFoucsNode.dispose();
     super.dispose();
   }
+
 
   //Email Focus Node
 
@@ -148,13 +150,14 @@ class _RegisterState extends State<Register> {
                     hintText: "FullName..",
                     onChanged: (Value){
                       FullName;
-                    },
+                   },
 
 
                   ),
 
                   CustomInput(
                     hintText: "Email..",
+
                     onChanged: (Value){
                       email;
                     },
@@ -162,10 +165,12 @@ class _RegisterState extends State<Register> {
                       _passwordFoucsNode.requestFocus();
                     },
                     textInputAction: TextInputAction.next,
+
                   ),
 
                   CustomInput(
                     hintText: "Password..",
+
                     onChanged: (Value){
                       password;
                     },
@@ -176,7 +181,8 @@ class _RegisterState extends State<Register> {
                     },
                     textInputAction: TextInputAction.next,
 
-      ),
+                  ),
+
 
                   CustomInput(
                     hintText: "Phone Number..",
@@ -193,6 +199,8 @@ class _RegisterState extends State<Register> {
 
                     }
 
+
+
                   ),
 
                   CustomInput(
@@ -202,12 +210,13 @@ class _RegisterState extends State<Register> {
                     },
                   ),
 
+
                   CustomBtn(
                     text: "Create New Account ",
                     onPressed:() {
-                      _submitForm();
+                      _alertDialogBuilder("error");
                       },
-                    isloading: _RegisterFormLoading,
+
                   ),
 
                 ],

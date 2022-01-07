@@ -53,8 +53,37 @@ class _RegisterState extends State<Register> {
   String FullName="";
   String email="";
   var password= " ";
+  late int PhoneNumber;
   String Sex="";
   late int Date;
+
+  //Focus Node For Input Field
+  late FocusNode _passwordFoucsNode;
+  @override
+  void initState() {
+    _passwordFoucsNode= FocusNode();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _passwordFoucsNode.dispose();
+    super.dispose();
+  }
+
+  //Email Focus Node
+   late FocusNode _emailFocusNode;
+  @override
+  noSuchMethod(Invocation invocation) {
+    _emailFocusNode=FocusNode();
+    return super.noSuchMethod(invocation);
+  }
+  @override
+  void deactivate() {
+    _emailFocusNode.dispose();
+    super.deactivate();
+  }
+
 
 
 
@@ -85,22 +114,61 @@ class _RegisterState extends State<Register> {
                 children: [
                   CustomInput(
                     hintText: "FullName..",
+                    onChanged: (Value){
+                      FullName;
+                    },
+                    onSubmitted: (Value){
+                      _emailFocusNode.requestFocus();
+                    },
+                    textInputAction: TextInputAction.next,
+
+
                   ),
 
                   CustomInput(
                     hintText: "Email..",
+                    onChanged: (Value){
+                      email;
+                    },
+                    focusnode: _emailFocusNode ,
+                    onSubmitted: (Value){
+                      _passwordFoucsNode.requestFocus();
+                    },
+                    textInputAction: TextInputAction.next,
                   ),
+
                   CustomInput(
                     hintText: "Password..",
+                    onChanged: (Value){
+                      password;
+                    },
+                    focusnode: _passwordFoucsNode,
+                      isPassword: true,
+                    textInputAction: TextInputAction.next
                   ),
+
                   CustomInput(
                     hintText: "Phone Number..",
+                    onChanged: (Value) {
+                      PhoneNumber;
+                    },
+                    textInputAction: TextInputAction.next,
                   ),
+
                   CustomInput(
                     hintText: "Sex..",
+                    onChanged: (Value){
+                      Sex;
+
+                    }
+
                   ),
+
                   CustomInput(
                     hintText: "Birth-Date..",
+                    onChanged: (Value){
+                      Date;
+                    },
                   ),
 
                   CustomBtn(

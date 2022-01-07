@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled/Screens/constants.dart';
 
@@ -12,10 +13,15 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child: Text("LogInPage",
-        style: Constants.regularHeading,
+      body: Center(
+        child: FlatButton(
+          child: Text("LogOut"),
+          onPressed: (){
+            FirebaseAuth.instance.signOut();
+          },
         ),
+
+
       ),
     );
   }

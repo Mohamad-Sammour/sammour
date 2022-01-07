@@ -1,5 +1,6 @@
 
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled/Screens/Widget/custom_btn.dart';
 import 'package:untitled/Screens/constants.dart';
@@ -19,7 +20,7 @@ class _RegisterState extends State<Register> {
 
 // (---- Build alert Dialog to display some error ----)
 
-  Future<void> _alertDialogBuilder() async{
+  Future<void> _alertDialogBuilder(String error) async{
 
     return showDialog(
         context: context,
@@ -28,7 +29,7 @@ class _RegisterState extends State<Register> {
           return AlertDialog(
             title: Text("Error"),
             content: Container(
-              child: Text("Just For random text"),
+              child: Text(error),
             ),
             actions: [
               FlatButton(
@@ -46,6 +47,49 @@ class _RegisterState extends State<Register> {
     );
   }
 
+  //Create a new user account
+  Future<String?> _CreateAccount() async{
+    try{
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: email,
+          password: password);
+      return null;
+    }
+    on FirebaseAuthException catch(e){
+      if(e.code =='weak password'){
+        return 'The password provided is too weak';
+      }
+      else if(e.code == 'email already in use'){
+        return 'The Account already Exist for that email';
+      }return e.message;
+    }catch(e){
+      return e.toString();
+    }
+
+  }
+
+  void _submitForm() async{
+//set the form loading state
+    setState(() {
+      _RegisterFormLoading=true;
+    });
+
+//run the create account method
+   String? _createAccountfeedBack= await _CreateAccount();
+
+   //if string not null we got error whlie create account
+   if(_createAccountfeedBack !=null) {
+     _alertDialogBuilder(_createAccountfeedBack);
+
+     //set the form to regular state [not loading]
+     setState(() {
+       _RegisterFormLoading=false;
+     });
+   }else{
+     Navigator.pop(context);
+   }
+  }
+
 // Default from loading state
   bool _RegisterFormLoading = false;
 
@@ -53,8 +97,26 @@ class _RegisterState extends State<Register> {
   String FullName="";
   String email="";
   var password= " ";
+  late int PhoneNumber;
   String Sex="";
   late int Date;
+
+  //Focus Node For Input Field
+  late FocusNode _passwordFoucsNode;
+  @override
+  void initState() {
+    _passwordFoucsNode= FocusNode();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _passwordFoucsNode.dispose();
+    super.dispose();
+  }
+
+  //Email Focus Node
+
 
 
 
@@ -85,30 +147,66 @@ class _RegisterState extends State<Register> {
                 children: [
                   CustomInput(
                     hintText: "FullName..",
+                    onChanged: (Value){
+                      FullName;
+                    },
+
+
                   ),
 
                   CustomInput(
                     hintText: "Email..",
+                    onChanged: (Value){
+                      email;
+                    },
+                    onSubmitted: (Value){
+                      _passwordFoucsNode.requestFocus();
+                    },
+                    textInputAction: TextInputAction.next,
                   ),
+
                   CustomInput(
                     hintText: "Password..",
-                  ),
+                    onChanged: (Value){
+                      password;
+                    },
+                    focusnode: _passwordFoucsNode,
+                      isPassword: true,
+                    onSubmitted: (Value){
+                      _submitForm();
+                    },
+                    textInputAction: TextInputAction.next,
+
+      ),
+
                   CustomInput(
                     hintText: "Phone Number..",
+                    onChanged: (Value) {
+                      PhoneNumber;
+                    },
+                    textInputAction: TextInputAction.next,
                   ),
+
                   CustomInput(
                     hintText: "Sex..",
+                    onChanged: (Value){
+                      Sex;
+
+                    }
+
                   ),
+
                   CustomInput(
                     hintText: "Birth-Date..",
+                    onChanged: (Value){
+                      Date;
+                    },
                   ),
 
                   CustomBtn(
                     text: "Create New Account ",
                     onPressed:() {
-                      setState(() {
-                        _RegisterFormLoading=true;
-                      });
+                      _submitForm();
                       },
                     isloading: _RegisterFormLoading,
                   ),

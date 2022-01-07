@@ -28,8 +28,12 @@ class CustomInput extends StatelessWidget {
       child: TextField(
         obscureText: _isPassword,
         focusNode: focusnode,
-        onChanged:onChanged,
-        onSubmitted:onSubmitted,
+        onChanged:(vv){
+
+        },
+        onSubmitted:(nn){
+
+        },
         textInputAction: textInputAction,
 
         decoration: InputDecoration(

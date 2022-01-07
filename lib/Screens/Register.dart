@@ -2,7 +2,6 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:untitled/Screens/Widget/custom_btn.dart';
 import 'package:untitled/Screens/constants.dart';
 import 'package:untitled/Widget/custom_btn.dart';
 import 'package:untitled/Widget/custom_input.dart';

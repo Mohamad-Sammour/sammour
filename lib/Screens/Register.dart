@@ -51,8 +51,8 @@ class _RegisterState extends State<Register> {
   Future<String?> _CreateAccount() async{
     try{
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: email,
-          password: password);
+          email: _Registeremail,
+          password: _Registerpassword);
       return null;
     }
     on FirebaseAuthException catch(e){
@@ -95,8 +95,8 @@ class _RegisterState extends State<Register> {
 
  //form input fields values
   String FullName="";
-  String email="";
-  var password= " ";
+  String _Registeremail="";
+  String _Registerpassword= " ";
   late int PhoneNumber;
   String Sex="";
   late int Date;
@@ -159,7 +159,7 @@ class _RegisterState extends State<Register> {
                     hintText: "Email..",
 
                     onChanged: (Value){
-                      email;
+                      _Registeremail;
                     },
                     onSubmitted: (Value){
                       _passwordFoucsNode.requestFocus();
@@ -172,7 +172,7 @@ class _RegisterState extends State<Register> {
                     hintText: "Password..",
 
                     onChanged: (Value){
-                      password;
+                      _Registerpassword;
                     },
                     focusnode: _passwordFoucsNode,
                       isPassword: true,
